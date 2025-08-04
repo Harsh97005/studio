@@ -49,7 +49,7 @@ export async function createAccountAction(_prevState: any, _formData: FormData) 
 export async function loginAction(_prevState: any, _formData: FormData) {
   // In a real app, you would add user authentication logic here.
   // For example, checking credentials with Firebase.
-  redirect('/');
+  redirect('/courses');
 }
 
 /**
