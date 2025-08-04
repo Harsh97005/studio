@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Book, Zap } from 'lucide-react';
+import { Book, Zap, Rocket, BrainCircuit } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -82,28 +82,28 @@ export default function LandingPage() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
-                <div className="flex items-center gap-2">
-                   <Zap className="w-8 h-8 text-accent"/>
+            <div className="mx-auto grid max-w-5xl items-start gap-8 py-12 lg:grid-cols-3 lg:gap-12">
+              <div className="grid gap-4 text-center p-6 rounded-lg transition-all hover:bg-background/50 hover:shadow-lg hover:-translate-y-2">
+                 <div className="flex flex-col items-center gap-2">
+                   <BrainCircuit className="w-10 h-10 text-accent"/>
                    <h3 className="text-xl font-bold">AI Summarization</h3>
                 </div>
                 <p className="text-muted-foreground">
                   Instantly generate concise summaries of long notes to quickly grasp key concepts.
                 </p>
               </div>
-              <div className="grid gap-1">
-                 <div className="flex items-center gap-2">
-                   <Zap className="w-8 h-8 text-accent"/>
+              <div className="grid gap-4 text-center p-6 rounded-lg transition-all hover:bg-background/50 hover:shadow-lg hover:-translate-y-2">
+                 <div className="flex flex-col items-center gap-2">
+                   <Rocket className="w-10 h-10 text-accent"/>
                    <h3 className="text-xl font-bold">Categorized Subjects</h3>
                 </div>
                 <p className="text-muted-foreground">
                   Organize your notes by subjects and college year, making it easy to find what you need.
                 </p>
               </div>
-              <div className="grid gap-1">
-                 <div className="flex items-center gap-2">
-                   <Zap className="w-8 h-8 text-accent"/>
+              <div className="grid gap-4 text-center p-6 rounded-lg transition-all hover:bg-background/50 hover:shadow-lg hover:-translate-y-2">
+                 <div className="flex flex-col items-center gap-2">
+                   <Zap className="w-10 h-10 text-accent"/>
                    <h3 className="text-xl font-bold">Easy Exporting</h3>
                 </div>
                 <p className="text-muted-foreground">

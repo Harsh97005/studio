@@ -71,21 +71,21 @@ export default function NotePage() {
         </Button>
       </div>
 
-      <div className="printable-area">
+      <div className="printable-area bg-card p-6 sm:p-8 rounded-xl shadow-lg">
         <header className="mb-8">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary leading-tight">
               {note.title}
             </h1>
-            {subject && <Badge className="text-base py-1 px-3">{subject.name}</Badge>}
+            {subject && <Badge className="text-base py-1 px-3 shrink-0 mt-1">{subject.name}</Badge>}
           </div>
-          <p className="mt-4 text-lg text-muted-foreground">{formattedDate}</p>
+          <p className="mt-4 text-lg text-muted-foreground">{formattedDate} by <span className="font-semibold text-foreground">Anonymous</span></p>
         </header>
 
         <Separator className="my-8"/>
 
         <article
-          className="prose prose-lg dark:prose-invert max-w-none"
+          className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-body"
           dangerouslySetInnerHTML={{ __html: note.content.replace(/\n/g, '<br />') }}
         />
       </div>

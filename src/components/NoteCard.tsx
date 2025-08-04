@@ -13,11 +13,11 @@ export function NoteCard({ note, subjectName }: NoteCardProps) {
   const formattedDate = format(parseISO(note.createdAt), 'MMMM d, yyyy');
 
   return (
-    <Link href={`/notes/${note.id}`} className="block hover:shadow-lg transition-shadow duration-200 rounded-lg">
-      <Card className="h-full flex flex-col">
+    <Link href={`/notes/${note.id}`} className="block group">
+      <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:border-primary group-hover:-translate-y-1">
         <CardHeader>
           <div className="flex justify-between items-start">
-            <CardTitle className="text-lg font-headline mb-2">{note.title}</CardTitle>
+            <CardTitle className="text-lg font-headline mb-2 group-hover:text-primary">{note.title}</CardTitle>
             <Badge variant="outline">{subjectName}</Badge>
           </div>
           <CardDescription>{formattedDate}</CardDescription>

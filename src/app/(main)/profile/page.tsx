@@ -33,7 +33,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+    <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
        <div className="mb-6">
         <Button variant="ghost" asChild>
           <Link href="/">
@@ -43,18 +43,18 @@ export default function ProfilePage() {
         </Button>
       </div>
 
-      <div className="flex flex-col items-center mb-12">
-        <Avatar className="h-24 w-24 mb-4">
+      <div className="flex flex-col items-center mb-12 text-center">
+        <Avatar className="h-28 w-28 mb-4 border-4 border-primary shadow-lg">
           <AvatarImage src="https://placehold.co/100x100.png" alt="@student" data-ai-hint="user avatar" />
-          <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+          <AvatarFallback className="text-4xl">{user.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
-        <h1 className="text-3xl font-bold font-headline capitalize">{user.name}</h1>
-        <p className="text-muted-foreground">{user.email}</p>
+        <h1 className="text-4xl font-bold font-headline capitalize">{user.name}</h1>
+        <p className="text-muted-foreground text-lg">{user.email}</p>
       </div>
 
-      <Card>
+      <Card className="bg-secondary/50">
         <CardHeader>
-          <CardTitle className="font-headline">Recently Viewed Notes</CardTitle>
+          <CardTitle className="font-headline text-2xl">Recently Viewed Notes</CardTitle>
           <CardDescription>
             Here are the last 10 notes you have visited.
           </CardDescription>
@@ -67,7 +67,12 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-center">You haven't viewed any notes yet.</p>
+             <div className="text-center py-12">
+                <p className="text-muted-foreground text-lg">You haven't viewed any notes yet.</p>
+                <Button asChild className="mt-4">
+                    <Link href="/">Explore Notes</Link>
+                </Button>
+            </div>
           )}
         </CardContent>
       </Card>
