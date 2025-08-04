@@ -9,7 +9,7 @@ import { NoteCard } from '@/components/NoteCard';
 import type { Note } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, History } from 'lucide-react';
 
 export default function ProfilePage() {
   const [visitedNotes, setVisitedNotes] = React.useState<Note[]>([]);
@@ -44,7 +44,7 @@ export default function ProfilePage() {
       </div>
 
       <div className="flex flex-col items-center mb-12 text-center">
-        <Avatar className="h-28 w-28 mb-4 border-4 border-primary shadow-lg">
+        <Avatar className="h-28 w-28 mb-4 border-4 border-primary shadow-lg ring-4 ring-primary/20">
           <AvatarImage src="https://placehold.co/100x100.png" alt="@student" data-ai-hint="user avatar" />
           <AvatarFallback className="text-4xl">{user.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
@@ -52,12 +52,15 @@ export default function ProfilePage() {
         <p className="text-muted-foreground text-lg">{user.email}</p>
       </div>
 
-      <Card className="bg-secondary/50">
-        <CardHeader>
-          <CardTitle className="font-headline text-2xl">Recently Viewed Notes</CardTitle>
-          <CardDescription>
-            Here are the last 10 notes you have visited.
-          </CardDescription>
+      <Card className="bg-card border-border/60">
+        <CardHeader className="flex-row items-center gap-4">
+          <History className="w-8 h-8 text-accent"/>
+          <div>
+            <CardTitle className="font-headline text-2xl">Recently Viewed Notes</CardTitle>
+            <CardDescription>
+              Here are the last 10 notes you have visited.
+            </CardDescription>
+          </div>
         </CardHeader>
         <CardContent>
           {visitedNotes.length > 0 ? (
@@ -67,7 +70,7 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-             <div className="text-center py-12">
+             <div className="text-center py-16 border-2 border-dashed border-border/50 rounded-lg">
                 <p className="text-muted-foreground text-lg">You haven't viewed any notes yet.</p>
                 <Button asChild className="mt-4">
                     <Link href="/">Explore Notes</Link>

@@ -20,7 +20,6 @@ import { Input } from '@/components/ui/input';
 import { NoteCard } from '@/components/NoteCard';
 import { UserNav } from '@/components/UserNav';
 import type { Note } from '@/lib/types';
-import { redirect } from 'next/navigation';
 import AppLayout from './(main)/layout';
 
 export default function Home() {
@@ -49,7 +48,7 @@ export default function Home() {
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2">
-            <div className="bg-primary p-2 rounded-lg">
+            <div className="bg-primary p-2 rounded-lg shadow-md shadow-primary/40">
               <Book className="text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold font-headline">NoteShare</h1>
@@ -102,13 +101,13 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="bg-secondary p-6 rounded-full">
+            <div className="flex flex-col items-center justify-center h-full text-center p-8">
+              <div className="bg-secondary/80 p-6 rounded-full border-4 border-dashed border-border">
                 <Search className="h-16 w-16 text-muted-foreground" />
               </div>
               <h3 className="mt-6 text-2xl font-semibold font-headline">No Notes Found</h3>
-              <p className="mt-2 text-muted-foreground">
-                Try adjusting your search or selecting a different subject.
+              <p className="mt-2 text-muted-foreground max-w-sm">
+                There are no notes matching your current search term or selected subject. Try a different query.
               </p>
             </div>
           )}

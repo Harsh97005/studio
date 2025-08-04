@@ -14,11 +14,11 @@ export function NoteCard({ note, subjectName }: NoteCardProps) {
 
   return (
     <Link href={`/notes/${note.id}`} className="block group">
-      <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:border-primary group-hover:-translate-y-1">
+      <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2 bg-card hover:bg-secondary/60 border border-border/60">
         <CardHeader>
           <div className="flex justify-between items-start">
-            <CardTitle className="text-lg font-headline mb-2 group-hover:text-primary">{note.title}</CardTitle>
-            <Badge variant="outline">{subjectName}</Badge>
+            <CardTitle className="text-lg font-headline mb-2 transition-colors group-hover:text-primary">{note.title}</CardTitle>
+            <Badge variant="secondary" className="group-hover:border-primary/50 group-hover:text-primary">{subjectName}</Badge>
           </div>
           <CardDescription>{formattedDate}</CardDescription>
         </CardHeader>

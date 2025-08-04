@@ -3,7 +3,7 @@
 import { notFound, useParams } from 'next/navigation';
 import { notes, subjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, Download, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
@@ -22,8 +22,8 @@ export default function NotePage() {
       const visitedNotesJSON = localStorage.getItem('visitedNotes');
       const visitedNotes = visitedNotesJSON ? JSON.parse(visitedNotesJSON) : [];
       if (!visitedNotes.includes(note.id)) {
-        visitedNotes.unshift(note.id); // Add to the beginning
-        localStorage.setItem('visitedNotes', JSON.stringify(visitedNotes.slice(0, 10))); // Limit to 10
+        visitedNotes.unshift(note.id);
+        localStorage.setItem('visitedNotes', JSON.stringify(visitedNotes.slice(0, 10)));
       }
     }
   }, [note]);
@@ -71,18 +71,18 @@ export default function NotePage() {
         </Button>
       </div>
 
-      <div className="printable-area bg-card p-6 sm:p-8 rounded-xl shadow-lg">
+      <div className="printable-area bg-card p-6 sm:p-8 rounded-xl shadow-lg border border-border/60">
         <header className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
             <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary leading-tight">
               {note.title}
             </h1>
-            {subject && <Badge className="text-base py-1 px-3 shrink-0 mt-1">{subject.name}</Badge>}
+            {subject && <Badge variant="secondary" className="text-base py-1 px-3 shrink-0 mt-1">{subject.name}</Badge>}
           </div>
           <p className="mt-4 text-lg text-muted-foreground">{formattedDate} by <span className="font-semibold text-foreground">Anonymous</span></p>
         </header>
 
-        <Separator className="my-8"/>
+        <Separator className="my-8 bg-border/50"/>
 
         <article
           className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-headline prose-p:font-body"

@@ -8,14 +8,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Book } from 'lucide-react';
+import { Book, UserPlus } from 'lucide-react';
 import { createAccountAction } from '@/app/actions';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" className="w-full" aria-disabled={pending}>
-      {pending ? 'Creating Account...' : 'Create an account'}
+      {pending ? 'Creating Account...' : <><UserPlus className="mr-2"/> Create an account</>}
     </Button>
   );
 }
@@ -28,7 +28,7 @@ export default function SignupPage() {
       <Card className="mx-auto max-w-sm">
         <CardHeader>
            <div className="flex justify-center mb-4">
-             <div className="bg-primary p-3 rounded-lg flex items-center justify-center">
+             <div className="bg-primary p-3 rounded-lg flex items-center justify-center shadow-lg shadow-primary/30">
               <Book className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function SignupPage() {
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
-            <Link href="/login" className="underline">
+            <Link href="/login" className="underline hover:text-primary">
               Log in
             </Link>
           </div>
