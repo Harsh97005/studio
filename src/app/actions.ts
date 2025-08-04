@@ -38,3 +38,16 @@ export async function createAccountAction(_prevState: any, _formData: FormData) 
   // For example, using Firebase Authentication.
   redirect('/login');
 }
+
+/**
+ * Simulates a user login.
+ * In a real app, this would handle user authentication.
+ * For now, it just redirects to the main app page.
+ * @param _prevState The previous form state (unused).
+ * @param _formData The form data (unused).
+ */
+export async function loginAction(_prevState: any, _formData: FormData) {
+  // In a real app, you would add user authentication logic here.
+  // For example, checking credentials with Firebase.
+  redirect('/');
+}
