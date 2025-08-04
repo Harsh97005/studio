@@ -9,12 +9,25 @@ import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { SummarizeButton } from './SummarizeButton';
 import { Separator } from '@/components/ui/separator';
+import * as React from 'react';
 
 export default function NotePage() {
   const params = useParams();
   const { id } = params;
 
   const note = notes.find((n) => n.id === id);
+
+  React.useEffect(() => {
+    if (note) {
+      const visitedNotesJSON = localStorage.getItem('visitedNotes');
+      const visitedNotes = visitedNotesJSON ? JSON.parse(visitedNotesJSON) : [];
+      if (!visitedNotes.includes(note.id)) {
+        visitedNotes.unshift(note.id); // Add to the beginning
+        localStorage.setItem('visitedNotes', JSON.stringify(visitedNotes.slice(0, 10))); // Limit to 10
+      }
+    }
+  }, [note]);
+
 
   if (!note) {
     notFound();
