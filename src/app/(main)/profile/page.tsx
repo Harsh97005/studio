@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -10,11 +11,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-// In a real app, you'd get the user session here.
-const FAKE_USER = { name: 'Student', email: 'student@example.com' };
-
 export default function ProfilePage() {
   const [visitedNotes, setVisitedNotes] = React.useState<Note[]>([]);
+  const [user, setUser] = React.useState({ name: 'Student', email: '' });
 
   React.useEffect(() => {
     const visitedNotesJSON = localStorage.getItem('visitedNotes');
@@ -22,6 +21,10 @@ export default function ProfilePage() {
       const visitedNoteIds: string[] = JSON.parse(visitedNotesJSON);
       const notesData = visitedNoteIds.map(id => notes.find(n => n.id === id)).filter(Boolean) as Note[];
       setVisitedNotes(notesData);
+    }
+    const storedEmail = localStorage.getItem('user_email');
+    if (storedEmail) {
+      setUser({ name: storedEmail.split('@')[0] || 'Student', email: storedEmail });
     }
   }, []);
 
@@ -43,10 +46,10 @@ export default function ProfilePage() {
       <div className="flex flex-col items-center mb-12">
         <Avatar className="h-24 w-24 mb-4">
           <AvatarImage src="https://placehold.co/100x100.png" alt="@student" data-ai-hint="user avatar" />
-          <AvatarFallback>{FAKE_USER.name.charAt(0)}</AvatarFallback>
+          <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
-        <h1 className="text-3xl font-bold font-headline">{FAKE_USER.name}</h1>
-        <p className="text-muted-foreground">{FAKE_USER.email}</p>
+        <h1 className="text-3xl font-bold font-headline capitalize">{user.name}</h1>
+        <p className="text-muted-foreground">{user.email}</p>
       </div>
 
       <Card>

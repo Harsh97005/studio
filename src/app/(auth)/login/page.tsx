@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { useActionState } from 'react';
+import * as React from 'react';
 import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,6 +23,15 @@ function SubmitButton() {
 
 export default function LoginPage() {
   const [state, formAction] = useActionState(loginAction, null);
+  const formRef = React.useRef<HTMLFormElement>(null);
+
+  const handleFormAction = (formData: FormData) => {
+    const email = formData.get('email') as string;
+    if (email) {
+      localStorage.setItem('user_email', email);
+    }
+    formAction(formData);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
@@ -38,11 +48,11 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={formAction}>
+          <form ref={formRef} action={handleFormAction}>
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" required />
+                <Input id="email" name="email" type="email" placeholder="m@example.com" required />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
