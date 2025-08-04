@@ -14,9 +14,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { User, LogIn, UserPlus, LogOut } from 'lucide-react';
 
+const FAKE_USER_LOGGED_IN = true;
+
 export function UserNav() {
   // In a real app, you'd get the user session here.
-  const user = null; // or { name: 'Student', email: 'student@example.com' }
+  const user = FAKE_USER_LOGGED_IN ? { name: 'Student', email: 'student@example.com' } : null; 
 
   return (
     <DropdownMenu>

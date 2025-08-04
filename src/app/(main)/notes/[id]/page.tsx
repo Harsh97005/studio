@@ -3,7 +3,7 @@
 import { notFound, useParams } from 'next/navigation';
 import { notes, subjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download, Sparkles } from 'lucide-react';
+import { ArrowLeft, Download } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';

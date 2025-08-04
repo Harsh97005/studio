@@ -1,116 +1,121 @@
-'use client';
-
-import * as React from 'react';
 import Link from 'next/link';
-import { Book, Search } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Book, Zap } from 'lucide-react';
 
-import { subjects, notes } from '@/lib/data';
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarInset,
-  SidebarTrigger,
-} from '@/components/ui/sidebar';
-import { Input } from '@/components/ui/input';
-import { NoteCard } from '@/components/NoteCard';
-import { UserNav } from '@/components/UserNav';
-import type { Note } from '@/lib/types';
-
-export default function Home() {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
-
-  const filteredNotes = React.useMemo(() => {
-    return notes
-      .filter((note: Note) => {
-        if (!selectedSubject) return true;
-        return note.subjectId === selectedSubject;
-      })
-      .filter((note: Note) => {
-        if (!searchTerm) return true;
-        return note.title.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-  }, [searchTerm, selectedSubject]);
-
-  const getSubjectName = (subjectId: string) => {
-    return subjects.find((s) => s.id === subjectId)?.name || 'Uncategorized';
-  };
-
+export default function LandingPage() {
   return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <div className="flex items-center gap-2">
-            <div className="bg-primary p-2 rounded-lg">
-              <Book className="text-primary-foreground" />
-            </div>
-            <h1 className="text-2xl font-bold font-headline">NoteShare</h1>
-          </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => setSelectedSubject(null)} isActive={selectedSubject === null}>
-                All Subjects
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            {subjects.map((subject) => (
-              <SidebarMenuItem key={subject.id}>
-                <SidebarMenuButton onClick={() => setSelectedSubject(subject.id)} isActive={selectedSubject === subject.id}>
-                  <subject.icon />
-                  <span>{subject.name}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarContent>
-      </Sidebar>
-      <SidebarInset>
-        <header className="flex items-center justify-between p-4 border-b">
-          <div className="flex items-center gap-4">
-            <SidebarTrigger />
-            <h2 className="text-xl font-semibold font-headline">
-              {selectedSubject ? getSubjectName(selectedSubject) : 'All Notes'}
-            </h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="relative w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                placeholder="Search notes..."
-                className="pl-10"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+    <div className="flex flex-col min-h-screen">
+      <header className="px-4 lg:px-6 h-14 flex items-center">
+        <Link href="#" className="flex items-center justify-center" prefetch={false}>
+          <Book className="h-6 w-6" />
+          <span className="sr-only">NoteShare</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Link
+            href="/login"
+            className="text-sm font-medium hover:underline underline-offset-4"
+            prefetch={false}
+          >
+            Login
+          </Link>
+          <Link
+            href="/signup"
+            className="text-sm font-medium hover:underline underline-offset-4"
+            prefetch={false}
+          >
+            Sign Up
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-2">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
+                    Collaborative Note-Taking for Students
+                  </h1>
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                    NoteShare is the ultimate platform for college students to share and discover study notes, powered by AI to help you learn smarter.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                  <Button asChild size="lg">
+                    <Link
+                      href="/signup"
+                      prefetch={false}
+                    >
+                      Get Started
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link
+                      href="/login"
+                      prefetch={false}
+                    >
+                      Login
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              <img
+                src="https://placehold.co/600x600.png"
+                width="600"
+                height="600"
+                alt="Hero"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+                data-ai-hint="students collaborating"
               />
             </div>
-            <UserNav />
           </div>
-        </header>
-        <main className="flex-1 p-6 bg-background">
-          {filteredNotes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredNotes.map((note) => (
-                <NoteCard key={note.id} note={note} subjectName={getSubjectName(note.subjectId)} />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="bg-secondary p-6 rounded-full">
-                <Search className="h-16 w-16 text-muted-foreground" />
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">Key Features</div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Learn Faster, Together</h2>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  NoteShare provides powerful tools to enhance your study sessions. From AI-powered summaries to seamless collaboration.
+                </p>
               </div>
-              <h3 className="mt-6 text-2xl font-semibold font-headline">No Notes Found</h3>
-              <p className="mt-2 text-muted-foreground">
-                Try adjusting your search or selecting a different subject.
-              </p>
             </div>
-          )}
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+              <div className="grid gap-1">
+                <div className="flex items-center gap-2">
+                   <Zap className="w-8 h-8 text-accent"/>
+                   <h3 className="text-xl font-bold">AI Summarization</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Instantly generate concise summaries of long notes to quickly grasp key concepts.
+                </p>
+              </div>
+              <div className="grid gap-1">
+                 <div className="flex items-center gap-2">
+                   <Zap className="w-8 h-8 text-accent"/>
+                   <h3 className="text-xl font-bold">Categorized Subjects</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Organize your notes by subjects and college year, making it easy to find what you need.
+                </p>
+              </div>
+              <div className="grid gap-1">
+                 <div className="flex items-center gap-2">
+                   <Zap className="w-8 h-8 text-accent"/>
+                   <h3 className="text-xl font-bold">Easy Exporting</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Export your notes to PDF for offline access and easy printing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-muted-foreground">&copy; 2024 NoteShare. All rights reserved.</p>
+      </footer>
+    </div>
   );
 }
