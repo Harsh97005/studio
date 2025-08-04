@@ -42,7 +42,7 @@ export default function LoginPage() {
               <Book className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-headline text-center">Login to NoteShare</CardTitle>
+          <CardTitle className="text-2xl font-headline text-center">Login to JodNotes</CardTitle>
           <CardDescription className="text-center">
             Enter your email below to login to your account
           </CardDescription>

@@ -32,7 +32,7 @@ export default function SignupPage() {
               <Book className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-headline text-center">Sign Up for NoteShare</CardTitle>
+          <CardTitle className="text-2xl font-headline text-center">Sign Up for JodNotes</CardTitle>
           <CardDescription className="text-center">
             Enter your information to create an account
           </CardDescription>

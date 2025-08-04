@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'NoteShare',
+  title: 'JodNotes',
   description: 'A shared platform for exam notes.',
 };
 

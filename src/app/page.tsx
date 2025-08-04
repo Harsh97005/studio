@@ -65,7 +65,7 @@ export default function Home() {
             <div className="bg-primary p-2 rounded-lg shadow-md shadow-primary/40">
               <Book className="text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold font-headline">NoteShare</h1>
+            <h1 className="text-2xl font-bold font-headline">JodNotes</h1>
           </div>
         </SidebarHeader>
         <SidebarContent>

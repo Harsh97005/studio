@@ -66,11 +66,11 @@ export default function LandingPage() {
       <header className="px-4 lg:px-6 h-16 flex items-center border-b">
         <Link href="#" className="flex items-center justify-center gap-2" prefetch={false}>
           <Logo />
-          <span className="text-2xl font-bold">NoteShare</span>
+          <span className="text-2xl font-bold">JodNotes</span>
         </Link>
         <nav className="ml-10 hidden lg:flex gap-6 items-center">
           <Link href="#" className="text-sm font-medium hover:text-primary hover:underline underline-offset-4" prefetch={false}>
-            Why NoteShare?
+            Why JodNotes?
           </Link>
           <Link href="#" className="flex items-center gap-1 text-sm font-medium hover:text-primary hover:underline underline-offset-4" prefetch={false}>
             Explore <ChevronDown className="h-4 w-4" />
@@ -106,7 +106,7 @@ export default function LandingPage() {
                 Remember everything and tackle any project with your notes, tasks, and schedule all in one place.
               </h1>
               <Button size="lg" className="h-12 px-10 text-base">
-                 <Link href="/signup">Get NoteShare free</Link>
+                 <Link href="/signup">Get JodNotes free</Link>
               </Button>
               <div className="mt-4">
                 <Link href="/login" className="text-sm underline hover:text-primary">
