@@ -1,10 +1,11 @@
 
+
 'use client';
 
 import * as React from 'react';
-import { Book, Search } from 'lucide-react';
+import { Book, Search, Library } from 'lucide-react';
 
-import { subjects, notes } from '@/lib/data';
+import { subjects as allSubjects, notes as allNotes } from '@/lib/data';
 import {
   SidebarProvider,
   Sidebar,
@@ -21,13 +22,26 @@ import { NoteCard } from '@/components/NoteCard';
 import { UserNav } from '@/components/UserNav';
 import type { Note } from '@/lib/types';
 import AppLayout from './(main)/layout';
+import { useSearchParams } from 'next/navigation';
+import { courses } from '@/lib/data';
+import Link from 'next/link';
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const courseId = searchParams.get('courseId') || 'btech';
+  
   const [searchTerm, setSearchTerm] = React.useState('');
   const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
 
+  const course = courses.find((c) => c.id === courseId);
+  const subjects = allSubjects.filter(s => s.courseId === courseId);
+
   const filteredNotes = React.useMemo(() => {
-    return notes
+    return allNotes
+      .filter((note: Note) => {
+        const subject = allSubjects.find(s => s.id === note.subjectId);
+        return subject && subject.courseId === courseId;
+      })
       .filter((note: Note) => {
         if (!selectedSubject) return true;
         return note.subjectId === selectedSubject;
@@ -36,10 +50,10 @@ export default function Home() {
         if (!searchTerm) return true;
         return note.title.toLowerCase().includes(searchTerm.toLowerCase());
       });
-  }, [searchTerm, selectedSubject]);
+  }, [searchTerm, selectedSubject, courseId]);
 
   const getSubjectName = (subjectId: string) => {
-    return subjects.find((s) => s.id === subjectId)?.name || 'Uncategorized';
+    return allSubjects.find((s) => s.id === subjectId)?.name || 'Uncategorized';
   };
   
   return (
@@ -56,6 +70,14 @@ export default function Home() {
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
+             <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/courses">
+                  <Library />
+                  <span>Change Course</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton onClick={() => setSelectedSubject(null)} isActive={selectedSubject === null}>
                 All Subjects
@@ -77,7 +99,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <SidebarTrigger />
             <h2 className="text-xl font-semibold font-headline">
-              {selectedSubject ? getSubjectName(selectedSubject) : 'All Notes'}
+              {course?.name} - {selectedSubject ? getSubjectName(selectedSubject) : 'All Notes'}
             </h2>
           </div>
           <div className="flex items-center gap-4">
@@ -107,7 +129,7 @@ export default function Home() {
               </div>
               <h3 className="mt-6 text-2xl font-semibold font-headline">No Notes Found</h3>
               <p className="mt-2 text-muted-foreground max-w-sm">
-                There are no notes matching your current search term or selected subject. Try a different query.
+                There are no notes matching your current search term or selected subject for this course.
               </p>
             </div>
           )}

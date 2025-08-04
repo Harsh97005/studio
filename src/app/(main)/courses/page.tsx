@@ -3,18 +3,8 @@
 
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Book, Code, PenTool, Briefcase, Building, GraduationCap, ChevronRight } from 'lucide-react';
-
-const courses = [
-  { name: 'B.Tech', icon: Code, description: 'Bachelor of Technology' },
-  { name: 'BCA', icon: Code, description: 'Bachelor of Computer Applications' },
-  { name: 'B.Des', icon: PenTool, description: 'Bachelor of Design' },
-  { name: 'MCA', icon: Code, description: 'Master of Computer Applications' },
-  { name: 'B.Com', icon: Briefcase, description: 'Bachelor of Commerce' },
-  { name: 'BBA', icon: Building, description: 'Bachelor of Business Administration' },
-  { name: 'MBA', icon: Building, description: 'Master of Business Administration' },
-  { name: 'Diploma', icon: GraduationCap, description: 'Diploma Courses' },
-];
+import { Book, ChevronRight } from 'lucide-react';
+import { courses } from '@/lib/data';
 
 export default function CoursesPage() {
   return (
@@ -33,7 +23,7 @@ export default function CoursesPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
         {courses.map((course) => (
-          <Link href="/" key={course.name} className="block group">
+          <Link href={`/?courseId=${course.id}`} key={course.id} className="block group">
             <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:shadow-primary/20 group-hover:border-primary group-hover:-translate-y-2 bg-card hover:bg-secondary/60 border border-border/60">
               <CardHeader className="flex-row items-center gap-4">
                 <div className="p-3 bg-accent/10 rounded-full">

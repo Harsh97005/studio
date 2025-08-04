@@ -1,19 +1,30 @@
 
-import type { Subject, Note } from './types';
-import { Calendar, Clipboard, BookOpen, GraduationCap } from 'lucide-react';
+import type { Subject, Note, Course } from './types';
+import { Calendar, Clipboard, BookOpen, GraduationCap, Code, PenTool, Briefcase, Building } from 'lucide-react';
+
+export const courses: Course[] = [
+  { id: 'btech', name: 'B.Tech', icon: Code, description: 'Bachelor of Technology' },
+  { id: 'bca', name: 'BCA', icon: Code, description: 'Bachelor of Computer Applications' },
+  { id: 'bdes', name: 'B.Des', icon: PenTool, description: 'Bachelor of Design' },
+  { id: 'mca', name: 'MCA', icon: Code, description: 'Master of Computer Applications' },
+  { id: 'bcom', name: 'B.Com', icon: Briefcase, description: 'Bachelor of Commerce' },
+  { id: 'bba', name: 'BBA', icon: Building, description: 'Bachelor of Business Administration' },
+  { id: 'mba', name: 'MBA', icon: Building, description: 'Master of Business Administration' },
+  { id: 'diploma', name: 'Diploma', icon: GraduationCap, description: 'Diploma Courses' },
+];
 
 export const subjects: Subject[] = [
-  { id: '1st-year', name: '1st Year', icon: Calendar },
-  { id: '2nd-year', name: '2nd Year', icon: Clipboard },
-  { id: '3rd-year', name: '3rd Year', icon: BookOpen },
-  { id: '4th-year', name: '4th Year', icon: GraduationCap },
+  { id: 'cs101', name: 'Intro to CS', icon: Calendar, courseId: 'btech' },
+  { id: 'ma101', name: 'Calculus', icon: Clipboard, courseId: 'btech' },
+  { id: 'phy101', name: 'Physics', icon: BookOpen, courseId: 'btech' },
+  { id: 'ee101', name: 'Electrical Eng.', icon: GraduationCap, courseId: 'btech' },
 ];
 
 export const notes: Note[] = [
   {
     id: '1',
     title: 'Introduction to Calculus',
-    subjectId: '1st-year',
+    subjectId: 'ma101',
     createdAt: '2023-10-01',
     content: `
 # Introduction to Calculus
@@ -41,7 +52,7 @@ Integral calculus is the study of the definitions, properties, and applications 
   {
     id: '2',
     title: 'Newtonian Mechanics',
-    subjectId: '1st-year',
+    subjectId: 'phy101',
     createdAt: '2023-10-05',
     content: `
 # Newtonian Mechanics
@@ -62,29 +73,9 @@ Newtonian mechanics is the study of the motion of objects and the forces that ca
 `,
   },
   {
-    id: '3',
-    title: 'The Roman Empire',
-    subjectId: '2nd-year',
-    createdAt: '2023-09-20',
-    content: `
-# The Roman Empire
-
-The Roman Empire was the post-Republican period of ancient Rome. It included territory around the Mediterranean Sea in Europe, North Africa, and Western Asia, and was ruled by emperors.
-
-## Periods
-
-- **Principate (27 BC – 284 AD)**: The first period of the Roman Empire, it was characterized by the reign of a single emperor (princeps) and a concerted effort to preserve the illusion of the formal continuance of the Roman Republic.
-- **Dominate (284 AD – 476 AD)**: The later period of the Roman Empire, it was characterized by a more autocratic style of rule.
-
-## Decline and Fall
-
-The fall of the Western Roman Empire was the process of decline in the Western Roman Empire in which the Empire failed to enforce its rule, and its vast territory was divided into several successor polities. The traditional date for the end of the Western Roman Empire is 476 AD when the last Western Roman Emperor, Romulus Augustulus, was deposed.
-`,
-  },
-  {
     id: '4',
     title: 'Data Structures in Python',
-    subjectId: '2nd-year',
+    subjectId: 'cs101',
     createdAt: '2023-10-10',
     content: `
 # Data Structures in Python
@@ -108,30 +99,9 @@ An algorithm is a set of instructions for solving a problem or accomplishing a t
 `,
   },
   {
-    id: '5',
-    title: 'World War II: An Overview',
-    subjectId: '3rd-year',
-    createdAt: '2023-11-01',
-    content: `
-# World War II: An Overview
-
-World War II was a global war that lasted from 1939 to 1945. It involved the vast majority of the world's countries—including all the great powers—forming two opposing military alliances: the Allies and the Axis.
-
-## Key Events
-
-- **Invasion of Poland (1939)**: Germany invades Poland, leading to declarations of war from France and the United Kingdom.
-- **Fall of France (1940)**: Germany invades France, Belgium, Luxembourg and the Netherlands.
-- **Battle of Britain (1940)**: The Royal Air Force (RAF) defends the United Kingdom against large-scale attacks by the German Air Force (Luftwaffe).
-- **Attack on Pearl Harbor (1941)**: The Imperial Japanese Navy Air Service conducts a surprise military strike against the United States naval base at Pearl Harbor, Hawaii.
-- **D-Day: Normandy Landings (1944)**: The Allied invasion of Normandy in Operation Overlord during World War II.
-- **Battle of the Bulge (1944–1945)**: The last major German offensive campaign on the Western Front.
-- **Victory in Europe Day (1945)**: The formal acceptance by the Allies of Nazi Germany's unconditional surrender of its armed forces.
-`,
-  },
-  {
     id: '6',
     title: 'Fundamentals of Algorithm Design',
-    subjectId: '3rd-year',
+    subjectId: 'cs101',
     createdAt: '2023-11-05',
     content: `
 # Fundamentals of Algorithm Design
