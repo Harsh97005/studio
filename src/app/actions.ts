@@ -1,6 +1,7 @@
 'use server';
 
 import { summarizeNotes } from '@/ai/flows/summarize-notes';
+import { redirect } from 'next/navigation';
 
 /**
  * Summarizes the provided note content using an AI model.
@@ -23,4 +24,17 @@ export async function summarizeNoteAction(notesContent: string) {
     // In a real application, you might want to return a more specific error object.
     return { summary: 'An error occurred while trying to generate the summary.' };
   }
+}
+
+/**
+ * Simulates creating an account.
+ * In a real app, this would handle user registration.
+ * For now, it just redirects to the login page.
+ * @param _prevState The previous form state (unused).
+ * @param _formData The form data (unused).
+ */
+export async function createAccountAction(_prevState: any, _formData: FormData) {
+  // In a real app, you would add user creation logic here.
+  // For example, using Firebase Authentication.
+  redirect('/login');
 }
