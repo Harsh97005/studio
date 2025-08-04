@@ -51,3 +51,12 @@ export async function loginAction(_prevState: any, _formData: FormData) {
   // For example, checking credentials with Firebase.
   redirect('/');
 }
+
+/**
+ * Simulates a user logout.
+ * In a real app, this would handle clearing the user's session.
+ * For now, it just redirects to the login page.
+ */
+export async function logoutAction() {
+  redirect('/login');
+}

@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { User, LogIn, UserPlus, LogOut } from 'lucide-react';
+import { logoutAction } from '@/app/actions';
 
 const FAKE_USER_LOGGED_IN = true;
 
@@ -47,10 +48,14 @@ export function UserNav() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
-            </DropdownMenuItem>
+            <form action={logoutAction}>
+              <DropdownMenuItem asChild>
+                <button type="submit" className="w-full">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </button>
+              </DropdownMenuItem>
+            </form>
           </>
         ) : (
           <>
