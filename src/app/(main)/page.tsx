@@ -19,6 +19,7 @@ import { Input } from '@/components/ui/input';
 import { NoteCard } from '@/components/NoteCard';
 import { UserNav } from '@/components/UserNav';
 import type { Note } from '@/lib/types';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -39,6 +40,12 @@ export default function Home() {
   const getSubjectName = (subjectId: string) => {
     return subjects.find((s) => s.id === subjectId)?.name || 'Uncategorized';
   };
+  
+  // In a real app, you would have a proper session check here.
+  const FAKE_USER_LOGGED_IN = true;
+  if (!FAKE_USER_LOGGED_IN) {
+    redirect('/login');
+  }
 
   return (
     <SidebarProvider>
