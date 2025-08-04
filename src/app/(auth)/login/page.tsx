@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -9,10 +10,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Book } from 'lucide-react';
 import { loginAction } from '@/app/actions';
-import { redirect } from 'next/navigation';
-
-// In a real app, you would have a proper session check here.
-const FAKE_USER_LOGGED_IN = true; 
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -25,12 +22,6 @@ function SubmitButton() {
 
 export default function LoginPage() {
   const [state, formAction] = useActionState(loginAction, null);
-
-  // If user is logged in, redirect to the main app page.
-  // In a real app, this check would be more robust.
-  if (FAKE_USER_LOGGED_IN) {
-     redirect('/');
-  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
