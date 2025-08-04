@@ -1,21 +1,19 @@
 
 import type { Subject, Note } from './types';
-import { Calculator, FlaskConical, ScrollText, Code, Globe, PenTool } from 'lucide-react';
+import { Calendar, Clipboard, BookOpen, GraduationCap } from 'lucide-react';
 
 export const subjects: Subject[] = [
-  { id: 'math', name: 'Mathematics', icon: Calculator },
-  { id: 'physics', name: 'Physics', icon: FlaskConical },
-  { id: 'history', name: 'History', icon: ScrollText },
-  { id: 'cs', name: 'Computer Science', icon: Code },
-  { id: 'geo', name: 'Geography', icon: Globe },
-  { id: 'lit', name: 'Literature', icon: PenTool },
+  { id: '1st-year', name: '1st Year', icon: Calendar },
+  { id: '2nd-year', name: '2nd Year', icon: Clipboard },
+  { id: '3rd-year', name: '3rd Year', icon: BookOpen },
+  { id: '4th-year', name: '4th Year', icon: GraduationCap },
 ];
 
 export const notes: Note[] = [
   {
     id: '1',
     title: 'Introduction to Calculus',
-    subjectId: 'math',
+    subjectId: '1st-year',
     createdAt: '2023-10-01',
     content: `
 # Introduction to Calculus
@@ -43,7 +41,7 @@ Integral calculus is the study of the definitions, properties, and applications 
   {
     id: '2',
     title: 'Newtonian Mechanics',
-    subjectId: 'physics',
+    subjectId: '1st-year',
     createdAt: '2023-10-05',
     content: `
 # Newtonian Mechanics
@@ -66,7 +64,7 @@ Newtonian mechanics is the study of the motion of objects and the forces that ca
   {
     id: '3',
     title: 'The Roman Empire',
-    subjectId: 'history',
+    subjectId: '2nd-year',
     createdAt: '2023-09-20',
     content: `
 # The Roman Empire
@@ -86,7 +84,7 @@ The fall of the Western Roman Empire was the process of decline in the Western R
   {
     id: '4',
     title: 'Data Structures in Python',
-    subjectId: 'cs',
+    subjectId: '2nd-year',
     createdAt: '2023-10-10',
     content: `
 # Data Structures in Python
@@ -97,7 +95,9 @@ Data structures are a way of organizing and storing data so that they can be acc
 
 - **Lists**: Ordered, mutable collections of items. \`my_list = [1, 2, 3]\`
 - **Tuples**: Ordered, immutable collections of items. \`my_tuple = (1, 2, 3)\`
-- **Dictionaries**: Unordered collections of key-value pairs. \`my_dict = {'key': 'value'}\`
+- **Dictionaries**: Unordered collections of key-value pairs. \`my_dict = {
+  'key': 'value'
+}\`
 - **Sets**: Unordered collections of unique items. \`my_set = {1, 2, 3}\`
 
 ## Algorithms
@@ -110,7 +110,7 @@ An algorithm is a set of instructions for solving a problem or accomplishing a t
   {
     id: '5',
     title: 'World War II: An Overview',
-    subjectId: 'history',
+    subjectId: '3rd-year',
     createdAt: '2023-11-01',
     content: `
 # World War II: An Overview
@@ -131,7 +131,7 @@ World War II was a global war that lasted from 1939 to 1945. It involved the vas
   {
     id: '6',
     title: 'Fundamentals of Algorithm Design',
-    subjectId: 'cs',
+    subjectId: '3rd-year',
     createdAt: '2023-11-05',
     content: `
 # Fundamentals of Algorithm Design
