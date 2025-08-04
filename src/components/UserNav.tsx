@@ -97,14 +97,10 @@ export function UserNav() {
               </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <form action={handleLogout}>
-              <DropdownMenuItem asChild>
-                <button type="submit" className="w-full">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </button>
-              </DropdownMenuItem>
-            </form>
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </DropdownMenuItem>
           </>
         ) : (
           <>
